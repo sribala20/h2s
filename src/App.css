@@ -17,7 +17,7 @@ button {
 }
 
 body {
-  background: url('./images/mesh-551.png') no-repeat center center fixed;
+  background: url('./images/mesh-551.png') no-repeat center center scroll;
   background-size: cover;
   height: 100vh;
   overflow-y: auto;
@@ -86,9 +86,8 @@ h4 {
 
 /* Define styles for p elements */
 p {
-  font-weight: 400;
+  font-weight: 500;
   font-size: 16pt;
-  font-style: italic;
   color: #ddd;
   line-height: 1.5;
   margin-bottom: 1rem;
