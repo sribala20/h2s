@@ -37,7 +37,7 @@ def audio_to_midi(audio_path: str, midi_path: str):
         melodia_trick=True,
         midi_tempo=120
     )
-    
+
     return midi
 
 def normalize(v):
@@ -110,7 +110,8 @@ def upload():
                     'artist': res['artist'],
                     'album': res['album'],
                     'album_image': res['album_image'],
-                    'track_url': res['track_url']})
+                    'track_url': res['track_url'],
+                    'date': res['date']})
 
 
 if __name__ == '__main__':
