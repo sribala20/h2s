@@ -1,0 +1,4 @@
+astrapy==1.4.0
+basic_pitch==0.3.3
+Flask==3.0.3
+numpy==1.26.4

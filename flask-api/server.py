@@ -1,15 +1,10 @@
 from flask import Flask, request, jsonify
-import requests
-import subprocess
 import numpy as np
-import pretty_midi
 import os
-import multiprocessing
 from astrapy import DataAPIClient
 from basic_pitch.inference import predict
 from basic_pitch import ICASSP_2022_MODEL_PATH
 from basic_pitch.note_creation import model_output_to_notes
-#from flask_cors import CORS
 
 app = Flask(__name__)
 client = DataAPIClient(os.environ["ASTRA_DB_APPLICATION_TOKEN"])
