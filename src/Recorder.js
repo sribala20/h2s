@@ -28,8 +28,12 @@ const Recorder = ({ onStop }) => {
 
   return (
     <div>
-      <button onClick={startRecording} disabled={isRecording}>Start Recording</button>
-      <button onClick={stopRecording} disabled={!isRecording}>Stop Recording</button>
+      <button onClick={startRecording} disabled={isRecording}>
+        Start Recording
+      </button>
+      <button onClick={stopRecording} disabled={!isRecording}>
+        Stop Recording
+      </button>
     </div>
   );
 };

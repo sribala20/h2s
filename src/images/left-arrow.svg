@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <title>20-Arrow Left</title>
+  <g id="_20-Arrow_Left" data-name="20-Arrow Left">
+    <path d="M16,0A16,16,0,1,0,32,16,16,16,0,0,0,16,0Zm0,30A14,14,0,1,1,30,16,14,14,0,0,1,16,30Z"/>
+    <path d="M8.41,15l5.29-5.29L12.29,8.29l-7,7a1,1,0,0,0,0,1.41l7,7,1.41-1.41L8.41,17H27V15Z"/>
+  </g>
+</svg>

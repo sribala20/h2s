@@ -1,15 +1,22 @@
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-} from "react-router-dom";
-import "./App.css";
-import githubLogo from "./images/github-mark-white.svg"; // Adjust the path as necessary
-import WebRecorder from "./WebRecorder";
-import Results from "./Results";
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import './App.css';
+import githubLogo from './images/github-mark-white.svg'; // Adjust the path as necessary
+import WebRecorder from './WebRecorder';
+import Results from './Results';
 
 function App() {
+  const [songs, setSongs] = useState([]);
+
+  useEffect(() => {
+    fetch('/songs')
+      .then((res) => res.json())
+      .then((data) => {
+        setSongs(data);
+        console.log(data);
+      });
+  }, []);
+
   return (
     <Router>
       <div className="app-container">
@@ -19,7 +26,7 @@ function App() {
           </div>
           <div>
             <a
-              href="https://github.com/your-repo-link"
+              href="https://github.com/sribala20/h2s/tree/main"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -28,7 +35,24 @@ function App() {
           </div>
         </header>
         <Routes>
-          <Route path="/" element={<WebRecorder />} />
+          <Route
+            path="/"
+            element={
+              <>
+                <WebRecorder />
+                <div className="songs-header">Songs in AstraDB :</div>
+                <div className="songs-gallery">
+                  {songs.map((song, index) => (
+                    <div key={index} className="song-bubble">
+                      <p>
+                        {song.track} - {song.artist}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </>
+            }
+          />
           <Route path="/results" element={<Results />} />
         </Routes>
       </div>

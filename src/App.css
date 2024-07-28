@@ -19,8 +19,11 @@ button {
 body {
   background: url('./images/mesh-551.png') no-repeat center center scroll;
   background-size: cover;
-  height: 100vh;
-  overflow-y: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  min-height: 100vh; /* Ensure the body takes at least the full height of the viewport */
 }
 
 main {
@@ -47,6 +50,17 @@ header img {
   opacity: 60%;
   margin-left: 20px;
 }
+
+header img:hover {
+  width: 30px;
+  height: 30px;
+  opacity: 100%;
+  margin-left: 20px;
+}
+
+/* header h2:hover {
+  opacity: 100%;
+} */
 
 /* Define styles for h1 elements */
 h1 {
@@ -95,7 +109,6 @@ p {
   margin-bottom: 1rem;
   text-align: center;
 }
-
 
 .mic-toggle {
   margin-top: 3rem;
@@ -197,7 +210,6 @@ p {
   border-radius: 999px;
 }
 
-
 .search-button {
   padding: 0.5rem 1rem;
   background-color: #641131;
@@ -240,19 +252,21 @@ p {
   margin-top: 1rem;
 }
 
-
 .back-button {
-  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%)
+    contrast(100%);
   font-size: 30pt; /* Font size */
   font-weight: 900;
   cursor: pointer; /* Pointer cursor */
   margin-bottom: 1rem; /* Bottom margin */
   padding: 10px; /* Add some padding */
   position: absolute;
-  top: 100px; 
-  left: 70px; 
+  top: 100px;
+  left: 70px;
   border-radius: 5px; /* Optional: Add rounded corners */
-  transition: color 0.3s ease, background-color 0.3s ease; /* Smooth transition for color and background color */
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease; /* Smooth transition for color and background color */
 }
 
 .l-arrow {
@@ -261,5 +275,44 @@ p {
 }
 
 .back-button:hover {
-  opacity: .6;
+  opacity: 0.6;
+}
+.songs-gallery {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem; /* Even spacing between items */
+  margin: 0 10rem; /* Even margin around the gallery */
+}
+
+.songs-header {
+  font-weight: 500;
+  font-size: 16pt;
+  color: #fff;
+  text-align: left;
+  margin-left: 10rem;
+  margin-bottom: 1rem;
+}
+
+.song-bubble {
+  background-color: rgba(210, 135, 154, 0.079);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the text horizontally */
+}
+
+.song-bubble p {
+  font-size: 12pt;
+  margin: 0; /* Remove default margin */
+}
+
+.songs-gallery::after {
+  content: '';
+  flex-basis: 100%;
+  height: 1rem; /* Height of the bottom margin */
 }
