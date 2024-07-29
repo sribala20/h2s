@@ -11,9 +11,7 @@ client = DataAPIClient(os.environ["ASTRA_DB_APPLICATION_TOKEN"])
 database = client.get_database(os.environ["ASTRA_DB_API_ENDPOINT"])
 collection = database.get_collection("no_norm")
 #CORS(app)
-
-app.config['DEBUG'] = True
-
+#app.config['DEBUG'] = True
 
 @app.route('/songs', methods=['GET'])
 def output_songs():
