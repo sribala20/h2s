@@ -75,6 +75,11 @@ def create_note_histogram(pitches):
 def upload():
     file = request.files['audioFile']
     temp_dir = '/Users/sri.bala/h2s/flask-api/temp'
+
+    # Ensure the directory exists
+    if not os.path.exists(temp_dir):
+        os.makedirs(temp_dir)
+
     temp_audio_path = os.path.join(temp_dir, file.filename)
     file.save(temp_audio_path)
 
