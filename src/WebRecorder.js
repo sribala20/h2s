@@ -88,7 +88,7 @@ function Home() {
       <h1>Sing, Hum, or Play to find your song</h1>
       <p>
         Click the mic and hum a clear tune of one of the songs in the Astra DB
-        song collection, or choose one of the example queries.
+        song collection.
       </p>
       <button className="mic-toggle" ref={micButtonRef}>
         <span className="material-icons">mic</span>
