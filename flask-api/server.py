@@ -18,6 +18,9 @@ collection = database.get_collection("no_norm")
 
 #app.config['DEBUG'] = True
 
+@app.route('/', methods=['GET'])
+def hello():
+    return "Hello World!"
 
 @app.route('/songs', methods=['GET'])
 def output_songs():
