@@ -3,3 +3,4 @@ basic_pitch[onnx]
 Flask==3.0.3
 numpy==1.23.5
 gunicorn==22.0.0
+Flask-Cors==4.0.1
