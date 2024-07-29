@@ -39,7 +39,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://h2s.onrender.com",
+  "proxy": "http://localhost:5000",
   "devDependencies": {
     "prettier": "^3.3.3"
   }

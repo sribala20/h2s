@@ -1,17 +1,23 @@
 from flask import Flask, request, jsonify
+import requests
+import subprocess
 import numpy as np
 import os
+import multiprocessing
 from astrapy import DataAPIClient
 from basic_pitch.inference import predict
 from basic_pitch import ICASSP_2022_MODEL_PATH
 from basic_pitch.note_creation import model_output_to_notes
+#from flask_cors import CORS
 
 app = Flask(__name__)
 client = DataAPIClient(os.environ["ASTRA_DB_APPLICATION_TOKEN"])
 database = client.get_database(os.environ["ASTRA_DB_API_ENDPOINT"])
 collection = database.get_collection("no_norm")
 #CORS(app)
+
 #app.config['DEBUG'] = True
+
 
 @app.route('/songs', methods=['GET'])
 def output_songs():

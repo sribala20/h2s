@@ -13,7 +13,6 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         setSongs(data);
-        console.log(data);
       });
   }, []);
 
