@@ -74,7 +74,7 @@ def create_note_histogram(pitches):
 @app.route('/upload', methods=['POST'])
 def upload():
     file = request.files['audioFile']
-    temp_dir = '/Users/sri.bala/h2s/flask-api/temp'
+    temp_dir = '/tmp/h2s/flask-api/temp'
 
     # Ensure the directory exists
     if not os.path.exists(temp_dir):
@@ -83,7 +83,7 @@ def upload():
     temp_audio_path = os.path.join(temp_dir, file.filename)
     file.save(temp_audio_path)
 
-    midi_dir =  '/Users/sri.bala/h2s/flask-api/midi/output.mid'
+    midi_dir = '/tmp/h2s/flask-api/midi/output.mid'
     midi_data = audio_to_midi(temp_audio_path, midi_dir)
     pitches = get_pitch_vector(midi_data)
     emb = create_note_histogram(pitches)
