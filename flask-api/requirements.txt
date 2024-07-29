@@ -1,5 +1,5 @@
 astrapy==1.4.0
-basic_pitch[tf]
+basic_pitch[coreml]
 Flask==3.0.3
 numpy==1.23.5
 gunicorn==22.0.0
