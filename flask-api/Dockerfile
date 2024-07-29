@@ -15,7 +15,6 @@ ENV FLASK_APP=server.py
 # Copy the rest of the application code into the container
 COPY . .
 
-RUN chmod +x /flask-api/start.sh
 
 # Expose the port that your Flask app listens on
 EXPOSE 5000
