@@ -7,6 +7,7 @@ function Home() {
   const micButtonRef = useRef(null);
   const playbackRef = useRef(null);
   const navigate = useNavigate();
+  const backendUrl = process.env.BACKEND_URL;
 
   let canRecord = false;
   let recorder = null;
@@ -70,7 +71,7 @@ function Home() {
     formData.append('audioFile', audioBlob, 'recording.mp3');
 
     try {
-      const response = await fetch('/upload', {
+      const response = await fetch('https://h2s.onrender.com/upload', {
         method: 'POST',
         body: formData,
       });
