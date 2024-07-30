@@ -8,13 +8,11 @@ from astrapy import DataAPIClient
 from basic_pitch.inference import predict
 from basic_pitch import ICASSP_2022_MODEL_PATH
 from basic_pitch.note_creation import model_output_to_notes
-from flask_cors import CORS
 
 app = Flask(__name__)
 client = DataAPIClient(os.environ["ASTRA_DB_APPLICATION_TOKEN"])
 database = client.get_database(os.environ["ASTRA_DB_API_ENDPOINT"])
 collection = database.get_collection("no_norm")
-CORS(app)
 
 #app.config['DEBUG'] = True
 
@@ -28,7 +26,9 @@ def output_songs():
         songs = collection.find()
         song_list = [{'track': song['track'], 'artist': song['artist']} for song in songs]  # Assuming each song document has 'track' and 'artist' fields
         print(jsonify(song_list))
-        return jsonify(song_list)
+        response = jsonify(song_list)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
@@ -101,11 +101,13 @@ def upload():
     print("Matching result:", res)  # Debugging statement
 
     os.remove(temp_audio_path)
-    return jsonify({'track': res['track'],
-                    'artist': res['artist'],
-                    'album': res['album'],
-                    'album_image': res['album_image'],
-                    'track_url': res['track_url']})
+    response = jsonify({'track': res['track'],
+                        'artist': res['artist'],
+                        'album': res['album'],
+                        'album_image': res['album_image'],
+                        'track_url': res['track_url']})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 
 if __name__ == '__main__':
