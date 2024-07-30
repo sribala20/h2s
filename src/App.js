@@ -7,10 +7,12 @@ import Results from './Results';
 
 function App() {
   const [songs, setSongs] = useState([]);
-  const backendUrl = process.env.BACKEND_URL;
 
   useEffect(() => {
-    fetch('https://h2s.onrender.com/songs')
+    console.log('Backend URL:', process.env.REACT_APP_BACKEND_URL);
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/songs`, {
+      mode: 'cors',
+    })
       .then((res) => res.json())
       .then((data) => {
         setSongs(data);
