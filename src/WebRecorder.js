@@ -67,7 +67,7 @@ function Home() {
 
   const handleButtonClick = async () => {
     const formData = new FormData();
-    formData.append('audioFile', audioBlob, 'recording.mp3');
+    formData.append('audioFile', audioBlob, 'recording.wav');
 
     try {
       const response = await fetch(
