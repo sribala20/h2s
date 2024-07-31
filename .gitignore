@@ -8,6 +8,7 @@
 /package-lock.json
 .env
 
+
 # testing
 /coverage
 
@@ -20,8 +21,11 @@
 .env.development.local
 .env.test.local
 .env.production.local
-/flask-api/__pycache__
-/flask-api/.env
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#backend
+/flask-api/__pycache__
+/flask-api/.env

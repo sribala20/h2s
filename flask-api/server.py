@@ -8,8 +8,10 @@ from astrapy import DataAPIClient
 from basic_pitch.inference import predict
 from basic_pitch import ICASSP_2022_MODEL_PATH
 from basic_pitch.note_creation import model_output_to_notes
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 client = DataAPIClient(os.environ["ASTRA_DB_APPLICATION_TOKEN"])
 database = client.get_database(os.environ["ASTRA_DB_API_ENDPOINT"])
 collection = database.get_collection("no_norm")
@@ -110,5 +112,5 @@ def upload():
     return response
 
 
-if __name__ == '__main__':
-    app.run()
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=8080)
