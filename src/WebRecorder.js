@@ -37,7 +37,7 @@ function Home() {
       };
 
       recorder.onstop = () => {
-        const blob = new Blob(chunks, { type: 'audio/wav; codecs=opus' });
+        const blob = new Blob(chunks, { type: 'audio/mp3; codecs=opus' });
         setAudioBlob(blob);
         chunks = [];
         const audioURL = window.URL.createObjectURL(blob);
@@ -67,7 +67,7 @@ function Home() {
 
   const handleButtonClick = async () => {
     const formData = new FormData();
-    formData.append('audioFile', audioBlob, 'recording.wav');
+    formData.append('audioFile', audioBlob, 'recording.mp3');
 
     try {
       const response = await fetch(
