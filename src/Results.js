@@ -10,21 +10,33 @@ function Results() {
   };
 
   const location = useLocation();
-  const { trackInfo } = location.state || { trackInfo: null };
+  const { trackInfo } = location.state || { trackInfo: [] };
 
-  if (!trackInfo) {
+  if (!trackInfo || trackInfo.length === 0) {
     return <div>No track info available</div>;
   }
 
   return (
-    <div className="track-info">
-      <button className="back-button" onClick={handleBackClick}>
-        ⬅
-      </button>
-      <img src={trackInfo.album_image} alt="Album" />
-      <h3>{`${trackInfo.track} - ${trackInfo.artist}`}</h3>
-      <h4>{trackInfo.album}</h4>
-      <audio controls src={trackInfo.track_url} />
+    <div>
+      <div className="track-info">
+        <button className="back-button" onClick={handleBackClick}>
+          ⬅
+        </button>
+        <img src={trackInfo[0].album_image} alt="Album" />
+        <h3>{`${trackInfo[0].track} - ${trackInfo[0].artist}`}</h3>
+        <h4>{trackInfo[0].album}</h4>
+        <audio controls src={trackInfo[0].track_url} />
+      </div>
+      <div className="songs-header">Other Matches :</div>
+      <div className="songs-gallery">
+        {trackInfo.slice(1, 5).map((track, index) => (
+          <div key={index} className="song-bubble">
+            <p>
+              {track.track} - {track.artist}
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

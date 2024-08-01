@@ -4,3 +4,6 @@ Flask==3.0.3
 numpy==1.23.5
 gunicorn==22.0.0
 Flask-Cors==4.0.1
+pandas==2.2.2
+pyperclip==1.9.0
+python-dotenv==1.0.1

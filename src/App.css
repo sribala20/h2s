@@ -223,8 +223,8 @@ p {
   transition: background-color 0.3s ease;
 }
 
-.search-button:hover {
-  background-color: #76325d;
+.search-button.clicked {
+  background-color: #76325d; /* Change to your desired color */
 }
 
 .is-hidden {
@@ -249,7 +249,7 @@ p {
 
 .track-info audio {
   align-items: center;
-  margin-top: 1rem;
+  margin: 1rem;
 }
 
 .back-button {

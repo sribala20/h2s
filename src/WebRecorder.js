@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Home() {
+  const [searchText, setSearchText] = useState('Search');
+  const [isClicked, setIsClicked] = useState(false);
   const [trackInfo, setTrackInfo] = useState(null);
   const [audioBlob, setAudioBlob] = useState(null);
   const micButtonRef = useRef(null);
@@ -66,6 +68,8 @@ function Home() {
   }, [audioBlob]);
 
   const handleButtonClick = async () => {
+    setIsClicked(true);
+    setSearchText('Searching ...');
     const formData = new FormData();
     formData.append('audioFile', audioBlob, 'recording.mp3');
 
@@ -81,7 +85,7 @@ function Home() {
 
       const jsonData = await response.json();
       setTrackInfo(jsonData);
-      navigate('/results', { state: { trackInfo: jsonData } });
+      navigate('/results', { state: { trackInfo: jsonData.tracks } });
     } catch (error) {
       console.error('Error:', error);
     }
@@ -99,8 +103,11 @@ function Home() {
       </button>
       <div className="controls-container">
         <audio className="playback" controls ref={playbackRef}></audio>
-        <button className="search-button" onClick={handleButtonClick}>
-          Search
+        <button
+          className={`search-button ${isClicked ? 'clicked' : ''}`}
+          onClick={handleButtonClick}
+        >
+          {searchText}
         </button>
       </div>
     </main>
