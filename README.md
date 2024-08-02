@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Hum-to-Search
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+https://github.com/datastax/movies_plus_plus/assets/9947422/6e739836-dc25-4834-a5aa-e341a35d1559
 
-## Available Scripts
+This hum to search music recognization app identifies songs based on hummed or sung melodies using vector search on audio embeddings in AstraDB. 
+Movies++ is a movie recommendation application that makes use of [GenAI](https://en.wikipedia.org/wiki/Generative_artificial_intelligence) to recommend movies based on natural language input. It is built on [DataStax Astra](https://astra.datastax.com/) and was demoed at [CascadiaJS](https://www.youtube.com/live/HfsNGyDQtJ4?si=XzDN5lzEcmIXncJ7&t=30203) and [DataStax's RAG++ AI Hack Night](https://www.datastax.com/events/rag-plus-plus-ai-hack-night-june-2024).
 
-In the project directory, you can run:
+## Getting Started
 
-### `npm start`
+To get started with this project and run it locally, follow the steps below:
+pre-reqs:
+* install Python 3.10.0 - the packages are stable on this version
+* Node.js
+* ffmpeg for audio processing
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+steps:
+1. Clone the repository `git clone https://github.com/sribala20/h2s.git`
+2. Change directory (`cd`) into the cloned repository flask backend `cd h2s/flask-api`
+3. Rename `.env.example` to `.env` and fill in the required environment variables
+   - To fill this in, you'll need an [Astra DB account](https://astra.datastax.com/)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Ingesting the Data
 
-### `npm test`
+Once you've populated `.env` with your API keys, make sure you have a collection in your Astra database named "movies". Once all those pieces are in place, you can run the following command to ingest the data:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+# Navigate to our scripts
+cd ./scripts
 
-### `npm run build`
+# Install dependencies
+pip install -r requirements.txt
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Run the script
+python load_movies.py
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+When this script runs, it will ingest the data from TMDB into your Astra database. This will allow you to search for movies and get recommendations based on the data you've ingested.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+From here, you'll be able to run the project locally, so feel free to contribute or use it as a foundation for various projects.
 
-### `npm run eject`
+## Working with Langflow
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+To use RAG with Langflow, you'll need to run Langflow. You can either do this as a [hosted cloud solution](https://langflow.datastax.com) on DataStax, or follow the [Langflow documentation](https://docs.langflow.org/) to get started running it locally.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Contributing
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+We accept pull requests and issues on this project. If you've got ideas, please **open an issue first** and discuss it with us and ideally it becomes a pull request that we open together. All contributions are welcome!
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Contribution Ideas
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+If you'd like to contribute but don't know where to start, feel free to check out the [open issues](https://github.com/datastax/movies_plus_plus/issues) on this repository.
