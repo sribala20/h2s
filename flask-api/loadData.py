@@ -36,14 +36,14 @@ for index, row in song_data.iterrows():
     vocals_path = os.path.join('separated/htdemucs',str(index),'vocals.wav')
 
     # convert vocals to embeddings
-    emb = generate_embedding(vocals_path)
+    vector_embedding = generate_embedding(vocals_path)
 
     # insert song with embedding into database
     try:
             inserted_song = collection.insert_one({
                 "track": track,
                 "artist": artist,
-                "$vector": emb,
+                "$vector": vector_embedding,
                 "album": album,
                 "date": release_date,
                 "album_image": album_image,

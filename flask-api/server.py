@@ -41,14 +41,14 @@ def upload():
         temp_audio_path = os.path.join(temp_dir, file.filename)
         file.save(temp_audio_path) # Save the uploaded mp3 audio to the temp directory
 
-        emb = generate_embedding(temp_audio_path)
-        emb_str = np.array2string(emb, separator=',', formatter={'float_kind':lambda x: "%.5f" % x}).replace(' ', '')
+        vector_embedding = generate_embedding(temp_audio_path)
+        emb_str = np.array2string(vector_embedding, separator=',', formatter={'float_kind':lambda x: "%.5f" % x}).replace(' ', '')
         
         print("vector:", emb_str) # Debugging statement to see vector output
         
         # vector similiarity search
         results = collection.find(
-        sort={"$vector": emb},
+        sort={"$vector": vector_embedding},
         limit=5)
 
         tracks = []
