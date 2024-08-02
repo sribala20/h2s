@@ -9,7 +9,7 @@ from getEmbeds import generate_embedding
 song_data = pd.read_csv('./song_data.csv')
 client = DataAPIClient(os.environ["ASTRA_DB_APPLICATION_TOKEN"])
 database = client.get_database(os.environ["ASTRA_DB_API_ENDPOINT"])
-collection = database.get_collection("long_notes")
+collection = database.get_collection("song_data")
 num_cores = multiprocessing.cpu_count()
 
 temp_dir = 'temp'

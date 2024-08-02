@@ -9,7 +9,7 @@ app = Flask(__name__)
 CORS(app)
 client = DataAPIClient(os.environ["ASTRA_DB_APPLICATION_TOKEN"])
 database = client.get_database(os.environ["ASTRA_DB_API_ENDPOINT"])
-collection = database.get_collection("long_notes")
+collection = database.get_collection("song_data")
 
 @app.route('/', methods=['GET'])
 def hello():
