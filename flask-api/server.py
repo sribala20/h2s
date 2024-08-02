@@ -18,12 +18,29 @@ def hello():
 @app.route('/songs', methods=['GET'])
 def output_songs():
     try:
-        songs = collection.find()
-        song_list = [{'track': song['track'], 'artist': song['artist']} for song in songs]
-
-        response = jsonify(song_list)
-        response.headers.add('Access-Control-Allow-Origin', '*')
-        return response
+        response = [
+    { "track": "In the End", "artist": "Linkin Park" },
+    { "track": "Yellow", "artist": "Coldplay" },
+    { "track": "Ride", "artist": "Twenty One Pilots" },
+    { "track": "Fast Car", "artist": "Luke Combs" },
+    { "track": "This Girl (Kungs Vs. Cookin' On 3 Burners)", "artist": "Kungs, Cookin' On 3 Burners" },
+    { "track": "Hard Times", "artist": "Paramore" },
+    { "track": "Electric Feel", "artist": "MGMT" },
+    { "track": "Payphone", "artist": "Maroon 5, Wiz Khalifa" },
+    { "track": "Tongue Tied", "artist": "GROUPLOVE" },
+    { "track": "The Less I Know The Better", "artist": "Tame Impala" },
+    { "track": "Little Talks", "artist": "Of Monsters and Men" },
+    { "track": "vampire", "artist": "Olivia Rodrigo" },
+    { "track": "Starboy", "artist": "The Weeknd, Daft Punk" },
+    { "track": "Miss You", "artist": "Oliver Tree, Robin Schulz" },
+    { "track": "Pompeii", "artist": "Bastille" },
+    { "track": "Blank Space", "artist": "Taylor Swift" },
+    { "track": "Watermelon Sugar", "artist": "Harry Styles" },
+    { "track": "I'm Good (Blue)", "artist": "David Guetta, Bebe Rexha" },
+    { "track": "Cupid - Twin Ver.", "artist": "FIFTY FIFTY" },
+    { "track": "Unwritten", "artist": "Natasha Bedingfield" }
+    ]
+        return jsonify(response)
     except Exception as e:
         return jsonify({"error retrieving songs from Astra": str(e)}), 500
 
