@@ -7,8 +7,11 @@ from basic_pitch.note_creation import model_output_to_notes
 
 client = DataAPIClient(os.environ["ASTRA_DB_APPLICATION_TOKEN"])
 database = client.get_database(os.environ["ASTRA_DB_API_ENDPOINT"])
-collection = database.get_collection("no_norm")
+collection = database.get_collection("song_data")
 
+# audio file to MIDI using the Basic Pitch model
+# takes audio and predicts musical notes present
+# takes model's output and creates MIDI formatted file
 def audio_to_midi(audio_path: str):
     model_output, _, _ = predict(audio_path, ICASSP_2022_MODEL_PATH)
 
@@ -24,10 +27,11 @@ def audio_to_midi(audio_path: str):
         multiple_pitch_bends=False,
         melodia_trick=True,
         midi_tempo=120
+
     )
     return midi
 
-# Function to extract pitches from MIDI data
+# Extract notes from MIDI data
 def get_pitch_vector(midi_data):
     pitch_vector = []
     for instrument in midi_data.instruments:
@@ -35,7 +39,7 @@ def get_pitch_vector(midi_data):
             pitch_vector.append(note.pitch)
     return pitch_vector
 
-# Function to normalize a vector
+# Function to normalize a vector - consistent scale between 0 and 1 for cosine comparisons
 def normalize(v):
     norm = np.linalg.norm(v)
     return v / norm if norm != 0 else v

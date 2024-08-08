@@ -9,7 +9,7 @@ app = Flask(__name__)
 CORS(app)
 client = DataAPIClient(os.environ["ASTRA_DB_APPLICATION_TOKEN"])
 database = client.get_database(os.environ["ASTRA_DB_API_ENDPOINT"])
-collection = database.get_collection("song_data")
+collection = database.get_collection("long_notes")
 
 @app.route('/', methods=['GET'])
 def hello():
@@ -42,7 +42,7 @@ def upload():
         file.save(temp_audio_path) # Save the uploaded mp3 audio to the temp directory
 
         emb = generate_embedding(temp_audio_path)
-        emb_str = np.array2string(emb, separator=',', formatter={'float_kind':lambda x: "%.5f" % x}).replace(' ', '')
+        emb_str = np.array2string(emb, separator=',', formatter={'float_kind':lambda x: "%.20f" % x}).replace(' ', '')
         
         print("vector:", emb_str) # Debugging statement to see vector output
         
@@ -74,5 +74,5 @@ def upload():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0")
+    app.run(debug=True)
     # port=8080 for google cloud run
