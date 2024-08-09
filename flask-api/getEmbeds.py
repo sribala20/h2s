@@ -1,13 +1,8 @@
 import numpy as np
 import os
-from astrapy import DataAPIClient
 from basic_pitch.inference import predict
 from basic_pitch import ICASSP_2022_MODEL_PATH
 from basic_pitch.note_creation import model_output_to_notes
-
-client = DataAPIClient(os.environ["ASTRA_DB_APPLICATION_TOKEN"])
-database = client.get_database(os.environ["ASTRA_DB_API_ENDPOINT"])
-collection = database.get_collection("song_data")
 
 # audio file to MIDI using the Basic Pitch model
 # takes audio and predicts musical notes present

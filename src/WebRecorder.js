@@ -18,6 +18,7 @@ function Home() {
     const micButton = micButtonRef.current;
     const playback = playbackRef.current;
 
+    // setupAudio: Request access to the user's microphone and call setupStream with the audio stream.
     const setupAudio = async () => {
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         try {
@@ -31,6 +32,7 @@ function Home() {
       }
     };
 
+    // setupStream: Initialize MediaRecorder, collect audio data into chunks, and process into an audio blob when recording stops.
     const setupStream = (stream) => {
       recorder = new MediaRecorder(stream);
 
@@ -48,6 +50,7 @@ function Home() {
       canRecord = true;
     };
 
+    // toggleMic: Start or stop audio recording based on recorder's state and update mic button appearance.
     const toggleMic = () => {
       if (!canRecord) return;
       if (recorder.state === 'inactive') {
@@ -67,6 +70,7 @@ function Home() {
     };
   }, [audioBlob]);
 
+  // handleButtonClick: Send the audio blob to the backend for processing and navigate to the results page.
   const handleButtonClick = async () => {
     setIsClicked(true);
     setSearchText('Searching ...');
