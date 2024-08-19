@@ -1,6 +1,6 @@
 # Hum-to-Search
 
-[![Watch the video](https://raw.githubusercontent.com/sribala20/h2s/main/assets/demo.png)](https://raw.githubusercontent.com/sribala20/h2s/main/assets/demo.mp4)
+[![Watch the video](https://raw.githubusercontent.com/sribala20/h2s/main/assets/demo.png)](https://raw.githubusercontent.com/sribala20/h2s/main/assets/demo.mov)
 
 This hum to search music recognization app identifies songs based on hummed or sung melodies using vector search in AstraDB and Spotify's [basic pitch](https://basicpitch.spotify.com/) to transform audio to MIDI and help to create vector embeddings. 
 
