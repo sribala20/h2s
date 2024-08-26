@@ -70,6 +70,17 @@ function Home() {
     };
   }, [audioBlob]);
 
+  const handleTestQuery = async () => {
+    const randomIndex = Math.floor(Math.random() * 17); 
+    const audioModule = await import(`./assets/${randomIndex}.mp3`);
+    const response = await fetch(audioModule.default);
+    const blob = await response.blob();
+    setAudioBlob(blob);
+    const audioURL = window.URL.createObjectURL(blob);
+    playbackRef.current.src = audioURL;
+
+  };
+
   // handleButtonClick: Send the audio blob to the backend for processing and navigate to the results page.
   const handleButtonClick = async () => {
     setIsClicked(true);
@@ -100,12 +111,14 @@ function Home() {
       <h1>Sing, Hum, or Play to find your song</h1>
       <p>
         Click the mic and hum a clear tune of one of the songs in the Astra DB
-        song collection.
+        song collection, or click random hum.
       </p>
       <button className="mic-toggle" ref={micButtonRef}>
         <span className="material-icons">mic</span>
       </button>
       <div className="controls-container">
+      <button className="random-hum"
+      onClick={handleTestQuery}> Random hum</button>
         <audio className="playback" controls ref={playbackRef}></audio>
         <button
           className={`search-button ${isClicked ? 'clicked' : ''}`}
@@ -113,6 +126,7 @@ function Home() {
         >
           {searchText}
         </button>
+        
       </div>
     </main>
   );
