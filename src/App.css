@@ -62,7 +62,7 @@ header img:hover {
   opacity: 100%;
 } */
 
-/* Define styles for h1 elements */
+/* Define styles for h elements */
 h1 {
   font-weight: 600;
   font-size: 32pt;
@@ -82,7 +82,6 @@ h2 {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Define styles for h1 elements */
 h3 {
   font-weight: 600;
   font-size: 20pt;
@@ -110,6 +109,7 @@ p {
   text-align: center;
 }
 
+/* Define styles for mic */
 .mic-toggle {
   margin-top: 3rem;
   position: relative;
@@ -223,9 +223,37 @@ p {
   transition: background-color 0.3s ease;
 }
 
-.search-button.clicked {
-  background-color: #76325d; /* Change to your desired color */
+.search-button:hover {
+  background-color: #76325d; 
 }
+
+.search-button.clicked {
+  background-color: #76325d; 
+}
+
+.random-hum {
+  background-color: rgba(255, 255, 255, 0.877);
+  box-shadow: 0px 0px 1rem rgba(16, 5, 5, 0.567);
+  border-radius: 10px;
+  font-size: 12pt;
+  font-weight: 500;
+  padding: 14px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.random-hum:hover {
+  background-color: rgba(255, 220, 232, 0.67);
+}
+
+.random-hum.clicked {
+  background-color: rgba(210, 135, 154, 0.3);
+}
+
 
 .is-hidden {
   display: none;

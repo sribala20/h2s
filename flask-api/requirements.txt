@@ -7,3 +7,4 @@ Flask-Cors==4.0.1
 pandas==2.2.2
 pyperclip==1.9.0
 python-dotenv==1.0.1
+demucs==4.0.1

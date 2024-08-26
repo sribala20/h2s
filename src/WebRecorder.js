@@ -18,6 +18,7 @@ function Home() {
     const micButton = micButtonRef.current;
     const playback = playbackRef.current;
 
+    // setupAudio: Request access to the user's microphone and call setupStream with the audio stream.
     const setupAudio = async () => {
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         try {
@@ -31,6 +32,7 @@ function Home() {
       }
     };
 
+    // setupStream: Initialize MediaRecorder, collect audio data into chunks, and process into an audio blob when recording stops.
     const setupStream = (stream) => {
       recorder = new MediaRecorder(stream);
 
@@ -48,6 +50,7 @@ function Home() {
       canRecord = true;
     };
 
+    // toggleMic: Start or stop audio recording based on recorder's state and update mic button appearance.
     const toggleMic = () => {
       if (!canRecord) return;
       if (recorder.state === 'inactive') {
@@ -67,6 +70,18 @@ function Home() {
     };
   }, [audioBlob]);
 
+  const handleTestQuery = async () => {
+    const randomIndex = Math.floor(Math.random() * 17); 
+    const audioModule = await import(`./assets/${randomIndex}.mp3`);
+    const response = await fetch(audioModule.default);
+    const blob = await response.blob();
+    setAudioBlob(blob);
+    const audioURL = window.URL.createObjectURL(blob);
+    playbackRef.current.src = audioURL;
+
+  };
+
+  // handleButtonClick: Send the audio blob to the backend for processing and navigate to the results page.
   const handleButtonClick = async () => {
     setIsClicked(true);
     setSearchText('Searching ...');
@@ -96,12 +111,14 @@ function Home() {
       <h1>Sing, Hum, or Play to find your song</h1>
       <p>
         Click the mic and hum a clear tune of one of the songs in the Astra DB
-        song collection.
+        song collection, or click random hum.
       </p>
       <button className="mic-toggle" ref={micButtonRef}>
         <span className="material-icons">mic</span>
       </button>
       <div className="controls-container">
+      <button className="random-hum"
+      onClick={handleTestQuery}> Random hum</button>
         <audio className="playback" controls ref={playbackRef}></audio>
         <button
           className={`search-button ${isClicked ? 'clicked' : ''}`}
@@ -109,6 +126,7 @@ function Home() {
         >
           {searchText}
         </button>
+        
       </div>
     </main>
   );
