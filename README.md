@@ -30,6 +30,9 @@ source venv/bin/activate
 # Install dependencies
 pip install -r requirements.txt
 
+# Export environmental variables
+export ASTRA_DB_APPLICATION_TOKEN= ...
+export ASTRA_DB_API_ENDPOINT= ... 
 # Run the script
 python3 loadData.py
 ```
