@@ -1,0 +1,22 @@
+Issue: 
+- Was using python 3.13 and trying to install packages including numpy 1.23.5
+- Error was suggesting a compatibility issue with setuptools tools in Python 3.13
+
+Fix: 
+
+0.1) Install python 3.11
+
+brew install python@3.11
+
+1) Create a new venv with Python 3.11
+
+python3.11 -m venv venv
+source ven/bin/activate
+
+2) Update pip and setup tools in the venv
+
+pip install --upgrade pip setuptools wheel
+
+3) Install reqs.txt
+
+pip install -r requirements.txt

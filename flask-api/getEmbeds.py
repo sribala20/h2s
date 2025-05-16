@@ -46,6 +46,7 @@ def create_note_histogram(pitches):
 
 # Function to generate embedding from audio file
 def generate_embedding(temp_audio_path):
+    """Generate embeddings from an audio file."""
     midi_data = audio_to_midi(temp_audio_path)
     pitches = get_pitch_vector(midi_data)
     emb = create_note_histogram(pitches)
